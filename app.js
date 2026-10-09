@@ -1,3 +1,6 @@
+// Codigo para cambiar theme color
+
+
 const boton = document.getElementById('btn-tema');
 
 const temaGuardado = localStorage.getItem('tema');
@@ -25,7 +28,7 @@ boton.addEventListener('click', () => {
 
 
 
-
+// Codigo para abrir y cerrar menu del navbar      (hecho con IA)
 
 
 const botonMenu = document.getElementById('btn-menu');
@@ -49,5 +52,37 @@ botonMenu.addEventListener('click', () => {
 menuNavegacion.querySelectorAll('a').forEach((enlace) => {
     enlace.addEventListener('click', cerrarMenu);
 });
+
+
+// Codigo para el slider de la seccion hero       (hecho con IA)
+
+const heroSlider = document.querySelector('.hero-slider');
+
+if (heroSlider) {
+    const heroTrack = heroSlider.querySelector('.hero-track');
+    const heroDots = [...heroSlider.querySelectorAll('.hero-punto')];
+    let index = 0;
+
+    const mostrarSlide = (i) => {
+        index = (i + heroTrack.children.length) % heroTrack.children.length;
+        heroTrack.style.transform = `translateX(-${index * 100}%)`;
+        heroDots.forEach((dot, pos) => {
+            dot.classList.toggle('activo', pos === index);
+            dot.setAttribute('aria-pressed', pos === index);
+        });
+    };
+
+    heroSlider.addEventListener('click', (e) => {
+        const paso = e.target.closest('[data-carrusel-paso]')?.dataset.carruselPaso;
+        const punto = e.target.closest('.hero-punto')?.dataset.carruselIndice;
+
+        if (paso) mostrarSlide(index + Number(paso));
+        if (punto) mostrarSlide(Number(punto));
+    });
+
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setInterval(() => mostrarSlide(index + 1), 5000);
+    }
+}
 
 

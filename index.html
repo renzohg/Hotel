@@ -18,13 +18,13 @@
             <div class="nav-menu" id="nav-menu">
                 <ul class="nav-enlaces">
                     <li><a href="#recorrido">Recorrido</a></li>
-                    <li><a href="#probalo">Probalo</a></li>
+                    <li><a href="#dashboard">Panel</a></li>
                     <li><a href="#precio">Precio</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
                 <div class="nav-menu-acciones">
                     <a href="#entrar" class="enlace-entrar">Entrar</a>
-                    <a href="#probalo" class="boton boton-destacado">Probar la demo</a>
+                    <a href="#entrar" class="boton boton-destacado">Crear cuenta</a>
                 </div>
             </div>
 
@@ -37,39 +37,37 @@
 
     <main>
         <section id="inicio" class="hero contenedor">
-            <span class="etiqueta">Software de gestión para hoteles y alojamientos</span>
-            <h1>Todo tu hotel bajo control en un solo lugar</h1>
-            <p>
-                Carga tus habitaciones, gestiona reservas directas, sincroniza con Booking y Airbnb, y administra consumos sin complicaciones técnicas.
-            </p>
-            <div class="hero-botones">
-                <a href="#probalo" class="boton boton-destacado">Probar demo gratis</a>
-                <a href="#recorrido" class="boton boton-secundario">Ver cómo funciona</a>
+            <div class="hero-copy">
+                <h1>Todo tu hotel bajo control en un solo lugar</h1>
+                <p>Carga tus habitaciones, gestiona reservas directas, sincroniza con Booking y Airbnb, y administra consumos sin complicaciones técnicas.</p>
+                <div class="hero-botones">
+                    <a href="#entrar" class="boton boton-destacado">Crear cuenta gratis</a>
+                    <a href="#recorrido" class="boton boton-secundario">Ver cómo funciona</a>
+                </div>
             </div>
 
-            <div class="panel-preview">
-                <div class="panel-cabecera">
-                    <span class="punto rojo"></span>
-                    <span class="punto amarillo"></span>
-                    <span class="punto verde"></span>
-                    <span class="panel-url">panel.juana'sHotel.com/mi-hotel</span>
-                </div>
-                <div class="panel-cuerpo">
-                    <div class="metrica">
-                        <span>Ocupación actual</span>
-                        <strong>84%</strong>
+            <div class="hero-galeria">
+                <div class="hero-slider" role="region" aria-label="Fotos del hotel">
+                    <div class="hero-track">
+                        <figure class="hero-slide">
+                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1400&q=85" alt="Habitación de hotel luminosa con cama amplia">
+                            <figcaption>Descanso con todos los detalles</figcaption>
+                        </figure>
+                        <figure class="hero-slide">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=85" alt="Hotel rodeado de jardines y piscina">
+                            <figcaption>Una experiencia para recordar</figcaption>
+                        </figure>
+                        <figure class="hero-slide">
+                            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1400&q=85" alt="Interior elegante de un alojamiento">
+                            <figcaption>Tu alojamiento, siempre en armonía</figcaption>
+                        </figure>
                     </div>
-                    <div class="metrica">
-                        <span>Reservas hoy</span>
-                        <strong>18 activas</strong>
-                    </div>
-                    <div class="metrica">
-                        <span>Ingresos del mes</span>
-                        <strong>$14.250 USD</strong>
-                    </div>
-                    <div class="metrica">
-                        <span>Check-ins pendientes</span>
-                        <strong>6 habitaciones</strong>
+                    <button type="button" class="hero-control anterior" data-carrusel-paso="-1" aria-label="Foto anterior"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="hero-control siguiente" data-carrusel-paso="1" aria-label="Foto siguiente"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                    <div class="hero-puntos" aria-label="Seleccionar foto">
+                        <button type="button" class="hero-punto activo" data-carrusel-indice="0" aria-label="Mostrar foto 1" aria-pressed="true"></button>
+                        <button type="button" class="hero-punto" data-carrusel-indice="1" aria-label="Mostrar foto 2" aria-pressed="false"></button>
+                        <button type="button" class="hero-punto" data-carrusel-indice="2" aria-label="Mostrar foto 3" aria-pressed="false"></button>
                     </div>
                 </div>
             </div>
@@ -121,40 +119,96 @@
             </div>
         </section>
 
-        <section id="probalo" class="contenedor">
+        <section id="dashboard" class="seccion-fondo">
             <div class="seccion-titulo">
-                <h2>Explora la experiencia sin costo</h2>
-                <p>Ingresa a una versión de prueba precargada para que experimentes cómo es gestionar tu hotel.</p>
+                <h2>Todo tu hotel en un solo panel</h2>
+                <p>Consulta reservas, ocupación e ingresos desde un dashboard claro y fácil de usar.</p>
             </div>
 
-            <div class="caja-demo">
-                <div class="demo-info">
-                    <h3>¿Qué puedes probar en la demo interactiva?</h3>
-                    <ul>
-                        <li>Simular el ingreso y salida de huéspedes (Check-in / Check-out).</li>
-                        <li>Crear una nueva reserva manual y bloquear fechas.</li>
-                        <li>Ver cómo tus clientes ven el motor de reservas en tiempo real.</li>
-                        <li>Configurar tarifas dinámicas y suplementos.</li>
-                    </ul>
-                    <a href="#registro" class="boton boton-destacado">Iniciar Demo en Vivo</a>
-                </div>
-                <div class="demo-tarjeta-preview">
-                    <h4>Estado de Habitaciones en Vivo</h4>
-                    <div class="habitacion-fila disponible">
-                        <span>Hab. 101 - Suite Superior</span>
-                        <strong>Disponible</strong>
+            <div class="contenedor">
+                <div class="dashboard-ventana" role="img" aria-label="Vista ilustrativa del panel de administración con indicadores, ocupación y reservas recientes">
+                    <div class="dashboard-barra">
+                        <div class="dashboard-ventana-puntos" aria-hidden="true"><span></span><span></span><span></span></div>
+                        <span>Panel de administración</span>
+                        <i class="fa-solid fa-bell" aria-hidden="true"></i>
                     </div>
-                    <div class="habitacion-fila ocupada">
-                        <span>Hab. 102 - Deluxe Doble</span>
-                        <strong>Ocupada (Salida hoy)</strong>
-                    </div>
-                    <div class="habitacion-fila mantenimiento">
-                        <span>Hab. 103 - Estándar Twin</span>
-                        <strong>Limpieza</strong>
-                    </div>
-                    <div class="habitacion-fila ocupada">
-                        <span>Hab. 201 - Vista al Mar</span>
-                        <strong>Reservada (Check-in 15:00)</strong>
+
+                    <div class="dashboard-layout">
+                        <aside class="dashboard-sidebar" aria-hidden="true">
+                            <strong><i class="fa-solid fa-hotel"></i> Juana's Hotel</strong>
+                            <span class="dashboard-nav-activo"><i class="fa-solid fa-chart-pie"></i> Resumen</span>
+                            <span><i class="fa-solid fa-calendar-days"></i> Reservas</span>
+                            <span><i class="fa-solid fa-bed"></i> Habitaciones</span>
+                            <span><i class="fa-solid fa-chart-column"></i> Reportes</span>
+                        </aside>
+
+                        <div class="dashboard-contenido" aria-hidden="true">
+                            <div class="dashboard-encabezado">
+                                <div>
+                                    <span class="dashboard-etiqueta">PANEL GENERAL</span>
+                                    <h3>Resumen del hotel</h3>
+                                </div>
+                                <span class="dashboard-fecha"><i class="fa-regular fa-calendar"></i> Este mes</span>
+                            </div>
+
+                            <div class="dashboard-metricas">
+                                <div class="dashboard-metrica">
+                                    <span>Ocupación</span>
+                                    <strong>82%</strong>
+                                    <small><i class="fa-solid fa-arrow-up"></i> 12% este mes</small>
+                                </div>
+                                <div class="dashboard-metrica">
+                                    <span>Reservas activas</span>
+                                    <strong>48</strong>
+                                    <small>En curso</small>
+                                </div>
+                                <div class="dashboard-metrica">
+                                    <span>Ingresos del mes</span>
+                                    <strong>$12.450</strong>
+                                    <small><i class="fa-solid fa-arrow-up"></i> 8% este mes</small>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-widgets">
+                                <div class="dashboard-widget dashboard-ocupacion">
+                                    <div class="dashboard-widget-titulo">
+                                        <strong>Ocupación semanal</strong>
+                                        <span>Últimos 7 días</span>
+                                    </div>
+                                    <div class="dashboard-grafico">
+                                        <div><span style="--barra: 42%"></span><small>Lun</small></div>
+                                        <div><span style="--barra: 68%"></span><small>Mar</small></div>
+                                        <div><span style="--barra: 54%"></span><small>Mié</small></div>
+                                        <div><span style="--barra: 86%"></span><small>Jue</small></div>
+                                        <div><span style="--barra: 72%"></span><small>Vie</small></div>
+                                        <div><span style="--barra: 96%"></span><small>Sáb</small></div>
+                                        <div><span style="--barra: 78%"></span><small>Dom</small></div>
+                                    </div>
+                                </div>
+
+                                <div class="dashboard-widget dashboard-reservas">
+                                    <div class="dashboard-widget-titulo">
+                                        <strong>Reservas recientes</strong>
+                                        <span>Ver todas</span>
+                                    </div>
+                                    <div class="dashboard-reserva">
+                                        <span class="dashboard-avatar">MG</span>
+                                        <span><strong>María García</strong><small>Suite superior · Hab. 204</small></span>
+                                        <b>Confirmada</b>
+                                    </div>
+                                    <div class="dashboard-reserva">
+                                        <span class="dashboard-avatar">JP</span>
+                                        <span><strong>Juan Pérez</strong><small>Deluxe doble · Hab. 108</small></span>
+                                        <b>Check-in hoy</b>
+                                    </div>
+                                    <div class="dashboard-reserva">
+                                        <span class="dashboard-avatar">LS</span>
+                                        <span><strong>Lucía Suárez</strong><small>Vista al mar · Hab. 302</small></span>
+                                        <b>Confirmada</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -178,7 +232,7 @@
                             <li>Calendario básico</li>
                             <li>Soporte por email</li>
                         </ul>
-                        <a href="#probalo" class="boton boton-secundario">Elegir Plan</a>
+                        <a href="#entrar" class="boton boton-secundario">Elegir Plan</a>
                     </div>
 
                     <div class="tarjeta tarjeta-precio tarjeta-popular">
@@ -192,7 +246,7 @@
                             <li>Módulo de consumos y caja</li>
                             <li>Soporte prioritario WhatsApp</li>
                         </ul>
-                        <a href="#probalo" class="boton boton-destacado">Probar 7 días gratis</a>
+                        <a href="#entrar" class="boton boton-destacado">Elegir Plan</a>
                     </div>
 
                     <div class="tarjeta tarjeta-precio">
@@ -205,7 +259,7 @@
                             <li>Reportes financieros avanzados</li>
                             <li>Asesor de cuenta dedicado</li>
                         </ul>
-                        <a href="#probalo" class="boton boton-secundario">Contactar Ventas</a>
+                        <a href="#entrar" class="boton boton-secundario">Contactar Ventas</a>
                     </div>
                 </div>
             </div>
@@ -223,8 +277,8 @@
                 </div>
 
                 <div class="tarjeta faq-item">
-                    <h3>¿Necesito ingresar tarjeta de crédito para la demo o prueba gratis?</h3>
-                    <p>No, puedes comenzar a usar el sistema gratis durante 7 días sin ingresar ningún método de pago ni compromisos.</p>
+                    <h3>¿Qué puedo gestionar desde el panel?</h3>
+                    <p>Puedes consultar habitaciones, reservas, ocupación e ingresos desde un mismo lugar.</p>
                 </div>
 
                 <div class="tarjeta faq-item">
@@ -244,7 +298,7 @@
                 <h2>¿Listo para modernizar la gestión de tu hotel?</h2>
                 <p>Únete a cientos de hoteles que ya aumentaron sus reservas directas y ahorraron horas de administración.</p>
                 <div class="cta-botones">
-                    <a href="#probalo" class="boton boton-destacado">Comenzar ahora gratis</a>
+                    <a href="#entrar" class="boton boton-destacado">Crear cuenta</a>
                 </div>
             </div>
         </section>
@@ -261,7 +315,7 @@
                 <h4>Navegación</h4>
                 <ul>
                     <li><a href="#recorrido">Recorrido</a></li>
-                    <li><a href="#probalo">Probalo</a></li>
+                    <li><a href="#dashboard">Panel</a></li>
                     <li><a href="#precio">Precio</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>

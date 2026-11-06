@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurá tu hotel · Juana's Hotel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pagina-setup">
+    <header>
+        <nav class="contenedor">
+            <a href="index.html" class="titulo-sitio">Juana's Hotel</a>
+            <div class="nav-acciones">
+                <span id="usuario-nombre" class="nombre-usuario-setup"></span>
+                <button type="button" id="btn-tema" class="boton-tema" aria-label="Cambiar tema"><i class="fa-solid fa-sun" aria-hidden="true"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="setup-main">
+        <section class="setup-tarjeta">
+            <p class="setup-kicker">Paso 2 de 2</p>
+            <h1>Contanos sobre tu hotel</h1>
+            <p class="setup-intro">Con estos datos armamos tu panel de administración. Podés cambiarlos más adelante.</p>
+
+            <form id="form-hotel" class="setup-formulario">
+                <div class="campo-grupo">
+                    <label for="hotel-nombre">Nombre del hotel</label>
+                    <input type="text" id="hotel-nombre" placeholder="Juana's Boutique Hotel" required>
+                </div>
+
+                <div class="setup-grid">
+                    <div class="campo-grupo">
+                        <label for="hotel-ubicacion">Ubicación / ciudad</label>
+                        <input type="text" id="hotel-ubicacion" placeholder="Mar del Plata" required>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="hotel-habitaciones">Cantidad de habitaciones</label>
+                        <input type="number" id="hotel-habitaciones" min="1" max="200" placeholder="12" required>
+                    </div>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="hotel-direccion">Dirección</label>
+                    <input type="text" id="hotel-direccion" placeholder="Av. Costanera 1200">
+                </div>
+
+                <div class="setup-grid">
+                    <div class="campo-grupo">
+                        <label for="hotel-telefono">Teléfono</label>
+                        <input type="tel" id="hotel-telefono" placeholder="+54 11 5555-0000">
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="hotel-tipo">Tipo de alojamiento</label>
+                        <select id="hotel-tipo">
+                            <option value="Hotel boutique">Hotel boutique</option>
+                            <option value="Posada">Posada</option>
+                            <option value="Apart hotel">Apart hotel</option>
+                            <option value="Hostería">Hostería</option>
+                            <option value="Complejo">Complejo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="hotel-descripcion">Descripción breve</label>
+                    <textarea id="hotel-descripcion" rows="3" placeholder="Alojamiento frente al mar, ideal para escapadas de fin de semana."></textarea>
+                </div>
+
+                <p id="hotel-error" class="setup-error" hidden></p>
+                <button type="submit" class="boton boton-destacado btn-bloque" id="btn-crear-hotel">Crear mi hotel</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="session.js"></script>
+    <script src="hotel-setup.js"></script>
+</body>
+</html>

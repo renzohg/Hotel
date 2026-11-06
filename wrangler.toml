@@ -1,0 +1,9 @@
+name = "juanas-hotel"
+pages_build_output_dir = "."
+compatibility_date = "2026-11-04"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "juanas-hotel-db"
+database_id = "5555db56-97b8-43d4-9a1e-ca7ec175a08c"
+migrations_dir = "migrations"

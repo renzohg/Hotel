@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de administración · Juana's Hotel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-body">
+    <div class="dash-window">
+        <!-- Barra de ventana estilo macOS -->
+        <header class="dash-chrome">
+            <div class="dash-traffic" aria-hidden="true">
+                <span></span><span></span><span></span>
+            </div>
+            <p class="dash-chrome-title">Panel de administración</p>
+            <button type="button" class="dash-bell" aria-label="Notificaciones">
+                <i class="fa-regular fa-bell"></i>
+            </button>
+        </header>
+
+        <div class="dash-shell">
+            <!-- Sidebar Navigation Compacta -->
+            <aside class="dash-sidebar">
+                <a href="index.html" class="dash-brand" title="Volver al sitio web">
+                    <span class="dash-brand-icon"><i class="fa-solid fa-hotel"></i></span>
+                    <strong id="sidebar-brand-name">Juana's Hotel</strong>
+                </a>
+
+                <nav class="dash-nav" aria-label="Secciones del panel">
+                    <button type="button" class="dash-nav-item activo" data-vista="resumen">
+                        <i class="fa-solid fa-chart-pie"></i> <span>Resumen</span>
+                    </button>
+                    <button type="button" class="dash-nav-item" data-vista="habitaciones">
+                        <i class="fa-solid fa-bed"></i> <span>Habitaciones</span>
+                    </button>
+                    <button type="button" class="dash-nav-item" data-vista="reservas">
+                        <i class="fa-regular fa-calendar"></i> <span>Reservas</span>
+                    </button>
+                </nav>
+
+                <div class="dash-sidebar-footer">
+                    <button type="button" id="btn-tema" class="dash-nav-item" aria-label="Cambiar tema">
+                        <i class="fa-solid fa-sun"></i> <span>Tema</span>
+                    </button>
+                    <button type="button" id="btn-logout" class="dash-nav-item" aria-label="Cerrar sesión">
+                        <i class="fa-solid fa-right-from-bracket"></i> <span>Cerrar sesión</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Contenido Principal -->
+            <main class="dash-main">
+                <!-- ==============================================
+                     1. VISTA RESUMEN (PANEL GENERAL)
+                     ============================================== -->
+                <section class="dash-vista activo" id="vista-resumen">
+                    <div class="dash-heading">
+                        <div>
+                            <p class="dash-kicker">PANEL GENERAL</p>
+                            <h1>Resumen del hotel</h1>
+                        </div>
+                        <div class="dash-acciones-cabecera">
+                            <button type="button" class="dash-btn-accion" id="btn-resumen-nueva-reserva">
+                                <i class="fa-solid fa-plus"></i> Nueva reserva
+                            </button>
+                            <button type="button" class="dash-btn-accion sec" id="btn-resumen-nueva-hab">
+                                <i class="fa-solid fa-bed"></i> Nueva habitación
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Módulo de Ingresos y Métricas Simples -->
+                    <div class="dash-kpis">
+                        <article class="dash-kpi">
+                            <p>Total de Ingresos ($)</p>
+                            <strong id="kpi-ingresos">$0</strong>
+                            <span class="dash-delta" id="kpi-ingresos-delta">Suma acumulada de reservas</span>
+                        </article>
+                        <article class="dash-kpi">
+                            <p>Habitaciones Ocupadas vs Libres</p>
+                            <strong id="kpi-ocupacion">0 / 0</strong>
+                            <span class="dash-delta" id="kpi-ocupacion-delta">0% ocupación</span>
+                        </article>
+                        <article class="dash-kpi">
+                            <p>Total de Reservas</p>
+                            <strong id="kpi-reservas">0</strong>
+                            <span class="dash-delta" id="kpi-reservas-delta">Registradas en el sistema</span>
+                        </article>
+                    </div>
+
+                    <!-- Gráfico semanal + Reservas recientes -->
+                    <div class="dash-grid">
+                        <article class="dash-card">
+                            <div class="dash-card-head">
+                                <h2>Ocupación semanal</h2>
+                                <span>Últimos 7 días</span>
+                            </div>
+                            <div class="dash-chart" id="chart-ocupacion" aria-hidden="true"></div>
+                            <div class="dash-chart-labels">
+                                <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+                            </div>
+                            <div id="chart-empty-msg" class="dash-chart-empty" hidden>
+                                <p>Cargá reservas para visualizar la ocupación de la semana.</p>
+                            </div>
+                        </article>
+
+                        <article class="dash-card">
+                            <div class="dash-card-head">
+                                <h2>Reservas recientes</h2>
+                                <button type="button" class="dash-link" data-vista="reservas">Ver todas</button>
+                            </div>
+                            <ul class="dash-reservas" id="lista-reservas-recientes"></ul>
+                            <div id="reservas-empty-resumen" class="dash-empty-card" hidden>
+                                <i class="fa-regular fa-calendar-xmark"></i>
+                                <p>No hay reservas registradas aún.</p>
+                                <button type="button" class="dash-btn-mini" id="btn-empty-primera-reserva">
+                                    <i class="fa-solid fa-plus"></i> Registrar primera reserva
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- ==============================================
+                     2. VISTA HABITACIONES (MÓDULO DE GESTIÓN)
+                     ============================================== -->
+                <section class="dash-vista" id="vista-habitaciones">
+                    <div class="dash-heading">
+                        <div>
+                            <p class="dash-kicker">INVENTARIO</p>
+                            <h1>Gestión de Habitaciones</h1>
+                        </div>
+                        <button type="button" class="dash-btn-accion" id="btn-abrir-modal-hab">
+                            <i class="fa-solid fa-plus"></i> Nueva habitación
+                        </button>
+                    </div>
+
+                    <!-- Barra de filtros y contadores rápidos -->
+                    <div class="dash-toolbar">
+                        <div class="dash-filtros" id="filtros-habitaciones">
+                            <button type="button" class="dash-filtro-btn activo" data-filtro-hab="todas">
+                                Todas (<span id="cnt-hab-todas">0</span>)
+                            </button>
+                            <button type="button" class="dash-filtro-btn" data-filtro-hab="Disponible">
+                                Disponibles (<span id="cnt-hab-libres">0</span>)
+                            </button>
+                            <button type="button" class="dash-filtro-btn" data-filtro-hab="Ocupada">
+                                Ocupadas (<span id="cnt-hab-ocupadas">0</span>)
+                            </button>
+                            <button type="button" class="dash-filtro-btn" data-filtro-hab="En Mantenimiento">
+                                Mantenimiento (<span id="cnt-hab-mant">0</span>)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Grilla de Habitaciones con cambio rápido de estado en 1 clic -->
+                    <div class="dash-rooms-grid" id="lista-habitaciones"></div>
+
+                    <div id="habitaciones-empty" class="dash-empty-seccion" hidden>
+                        <i class="fa-solid fa-bed"></i>
+                        <h3>No hay habitaciones registradas</h3>
+                        <p>Agregá tu primera habitación para comenzar a recibir reservas y gestionar la disponibilidad.</p>
+                        <button type="button" class="dash-btn-accion" id="btn-empty-crear-hab">
+                            <i class="fa-solid fa-plus"></i> Agregar habitación
+                        </button>
+                    </div>
+                </section>
+
+                <!-- ==============================================
+                     3. VISTA RESERVAS (MÓDULO DE GESTIÓN)
+                     ============================================== -->
+                <section class="dash-vista" id="vista-reservas">
+                    <div class="dash-heading">
+                        <div>
+                            <p class="dash-kicker">OPERACIÓN</p>
+                            <h1>Gestión de Reservas</h1>
+                        </div>
+                        <button type="button" class="dash-btn-accion" id="btn-abrir-modal-reserva">
+                            <i class="fa-solid fa-plus"></i> Nueva reserva
+                        </button>
+                    </div>
+
+                    <!-- Barra de filtros de reservas -->
+                    <div class="dash-toolbar">
+                        <div class="dash-filtros" id="filtros-reservas">
+                            <button type="button" class="dash-filtro-btn activo" data-filtro-res="todas">
+                                Todas (<span id="cnt-res-todas">0</span>)
+                            </button>
+                            <button type="button" class="dash-filtro-btn" data-filtro-res="Confirmada">
+                                Confirmadas (<span id="cnt-res-conf">0</span>)
+                            </button>
+                            <button type="button" class="dash-filtro-btn" data-filtro-res="Pendiente">
+                                Pendientes (<span id="cnt-res-pend">0</span>)
+                            </button>
+                            <button type="button" class="dash-filtro-btn" data-filtro-res="Finalizada">
+                                Finalizadas (<span id="cnt-res-fin">0</span>)
+                            </button>
+                            <button type="button" class="dash-filtro-btn" data-filtro-res="Cancelada">
+                                Canceladas (<span id="cnt-res-canc">0</span>)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de Reservas -->
+                    <div class="dash-card dash-card-tabla">
+                        <div class="dash-tabla-wrapper">
+                            <table class="dash-tabla" id="tabla-reservas">
+                                <thead>
+                                    <tr>
+                                        <th>Huésped</th>
+                                        <th>Habitación</th>
+                                        <th>Check-in</th>
+                                        <th>Check-out</th>
+                                        <th>Monto ($)</th>
+                                        <th>Estado</th>
+                                        <th style="text-align: right;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-reservas"></tbody>
+                            </table>
+                        </div>
+
+                        <div id="reservas-empty-seccion" class="dash-empty-seccion" hidden>
+                            <i class="fa-regular fa-calendar-xmark"></i>
+                            <h3>No hay reservas registradas</h3>
+                            <p>Registrá una nueva reserva manual asignándole una habitación disponible.</p>
+                            <button type="button" class="dash-btn-accion" id="btn-empty-crear-reserva">
+                                <i class="fa-solid fa-plus"></i> Registrar reserva
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         MODAL CREAR / EDITAR HABITACIÓN
+         ============================================== -->
+    <div class="modal-dash-overlay" id="modal-habitacion" aria-hidden="true">
+        <div class="modal-dash-caja" role="dialog" aria-labelledby="modal-hab-titulo">
+            <button type="button" class="modal-dash-cerrar" id="btn-cerrar-modal-hab" aria-label="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 id="modal-hab-titulo">Nueva Habitación</h2>
+            <p class="modal-dash-sub">Completá los datos de la habitación para tu inventario.</p>
+
+            <form id="form-habitacion" class="modal-dash-form">
+                <input type="hidden" id="hab-edit-id" value="">
+
+                <div class="campo-grupo">
+                    <label for="hab-numero">Nombre / Número de habitación *</label>
+                    <input type="text" id="hab-numero" placeholder="Ej: 101, Suite Presidencial" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="hab-tipo">Tipo de habitación</label>
+                    <select id="hab-tipo">
+                        <option value="Standard">Standard</option>
+                        <option value="Deluxe doble">Deluxe doble</option>
+                        <option value="Suite superior">Suite superior</option>
+                        <option value="Vista al mar">Vista al mar</option>
+                        <option value="Cabaña / Apart">Cabaña / Apart</option>
+                    </select>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="hab-estado">Estado inicial</label>
+                    <select id="hab-estado">
+                        <option value="Disponible">Disponible</option>
+                        <option value="Ocupada">Ocupada</option>
+                        <option value="En Mantenimiento">En Mantenimiento</option>
+                    </select>
+                </div>
+
+                <div class="modal-dash-botones">
+                    <button type="button" class="dash-btn-accion sec" id="btn-cancelar-modal-hab">Cancelar</button>
+                    <button type="submit" class="dash-btn-accion" id="btn-guardar-hab">Guardar habitación</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==============================================
+         MODAL REGISTRAR NUEVA RESERVA MANUAL
+         ============================================== -->
+    <div class="modal-dash-overlay" id="modal-reserva" aria-hidden="true">
+        <div class="modal-dash-caja" role="dialog" aria-labelledby="modal-res-titulo">
+            <button type="button" class="modal-dash-cerrar" id="btn-cerrar-modal-res" aria-label="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 id="modal-res-titulo">Registrar Nueva Reserva</h2>
+            <p class="modal-dash-sub">Asigná una habitación y cargá los datos del huésped.</p>
+
+            <form id="form-reserva" class="modal-dash-form">
+                <div class="campo-grupo">
+                    <label for="res-huesped">Nombre completo del huésped *</label>
+                    <input type="text" id="res-huesped" placeholder="Ej: Carlos Gómez" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="res-habitacion">Habitación asignada *</label>
+                    <select id="res-habitacion" required>
+                        <option value="">Seleccioná una habitación...</option>
+                    </select>
+                    <small id="res-hab-aviso" class="campo-ayuda"></small>
+                </div>
+
+                <div class="dash-form-row">
+                    <div class="campo-grupo">
+                        <label for="res-checkin">Fecha Check-in *</label>
+                        <input type="date" id="res-checkin" required>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="res-checkout">Fecha Check-out *</label>
+                        <input type="date" id="res-checkout" required>
+                    </div>
+                </div>
+
+                <div class="dash-form-row">
+                    <div class="campo-grupo">
+                        <label for="res-monto">Precio / Monto pagado ($) *</label>
+                        <input type="number" id="res-monto" min="0" step="1" placeholder="Ej: 150" required>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="res-estado">Estado de la reserva</label>
+                        <select id="res-estado">
+                            <option value="Confirmada">Confirmada</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Finalizada">Finalizada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-dash-botones">
+                    <button type="button" class="dash-btn-accion sec" id="btn-cancelar-modal-res">Cancelar</button>
+                    <button type="submit" class="dash-btn-accion" id="btn-guardar-reserva">Registrar reserva</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="session.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

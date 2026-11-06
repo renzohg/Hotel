@@ -1,0 +1,16 @@
+# Dependencias y paquetes pesados
+node_modules/
+
+# Archivos temporales de Cloudflare Wrangler
+.wrangler/
+
+# Configuraciones locales del editor (opcional pero recomendado)
+.vscode/
+
+# Archivos de entorno que contengan claves secretas (si los llegas a usar)
+.env
+.env.local
+
+# Logs y bases de datos temporales locales
+*.log
+.dev.vars
